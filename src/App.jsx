@@ -3,6 +3,7 @@ import bookLogo from "./assets/books.png";
 import Books from "./components/Books";
 import SingleBook from "./components/SingleBook";
 import Login from "./components/Login";
+import Navigations from "./components/Navigations";
 import axios from "axios";
 
 import { Routes, Route, Navigate } from "react-router-dom";
@@ -33,10 +34,11 @@ function App() {
 
   return (
     <>
+      <Navigations />
       <Routes>
         <Route path="/books" element={<Books bookList={bookList} />} />
         <Route path="/" element={<Navigate to="/books" />} />
-        <Route path="/books/:id" element={<SingleBook />} />
+        <Route path="/books/:id" element={<SingleBook bookList={bookList} />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Navigate to="/login" />} />
       </Routes>
