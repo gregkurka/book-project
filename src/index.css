@@ -1,0 +1,46 @@
+body {
+  font-family: Georgia, serif;
+  background-color: #f8f8f8;
+  margin: 0;
+  padding: 0;
+}
+
+#logo-image {
+  width: 30px;
+  margin-right: 10px;
+}
+
+h1 {
+  text-align: center;
+}
+
+.book-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.book-card {
+  display: flex;
+  flex-direction: column;
+  border: solid 2px black;
+  width: 300px;
+  align-items: center;
+  text-align: center;
+  margin: 20px;
+}
+
+.book-card > button {
+  margin: 5px;
+}
+
+.book-card > h2 {
+  margin: 0px;
+  margin-top: 5px;
+}
+
+.book-card > img {
+  height: 200px;
+}
+
+/* Add your own custom styles here */
