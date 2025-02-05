@@ -10,8 +10,9 @@ body {
   margin-right: 10px;
 }
 
-h1 {
+.big-title {
   text-align: center;
+  font-size: 220%;
 }
 
 .book-list {
@@ -34,6 +35,10 @@ h1 {
   margin: 5px;
 }
 
+.book-card > p {
+  margin: 10px;
+}
+
 .book-card > h2 {
   margin: 0px;
   margin-top: 5px;
@@ -41,6 +46,11 @@ h1 {
 
 .book-card > img {
   height: 200px;
+}
+
+.single-book > * {
+  margin: auto;
+  margin: 0 auto;
 }
 
 /* Add your own custom styles here */

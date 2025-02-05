@@ -3,10 +3,9 @@ import React from "react";
 import BookCard from "./BookCard";
 
 function Books({ bookList }) {
-  console.log(bookList);
   return (
     <>
-      <h1>Library Book List</h1>
+      <h2 className="big-title">Library Book List</h2>
       <div className="book-list">
         {bookList.map((book) => {
           return <BookCard key={book.id} book={book} />;
