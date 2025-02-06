@@ -2,13 +2,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function Navigations() {
+function Navigations({ user }) {
   return (
     <div className="header">
       <h1>Book Buddy Public Library</h1>
+
       <div className="nav-links">
-        <Link to="/books">Book Catelogue</Link>
-        <Link to="/login">Login or Register</Link>
+        <Link to="/books">Book Catalogue</Link>
+        {user ? (
+          <Link to="/account">Welcome, {user.firstname}! </Link>
+        ) : (
+          <>
+            <Link to="/login">Login</Link>
+            or
+            <Link to="/register">Register</Link>
+          </>
+        )}
       </div>
     </div>
   );
