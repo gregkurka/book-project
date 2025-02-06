@@ -4,6 +4,10 @@ import Books from "./components/Books";
 import SingleBook from "./components/SingleBook";
 import Login from "./components/Login";
 import Navigations from "./components/Navigations";
+import ProtectedRoute from "./components/ProtectedRoute";
+import Account from "./components/Account";
+import Register from "./components/Register";
+
 import axios from "axios";
 
 import { Routes, Route, Navigate } from "react-router-dom";
@@ -13,6 +17,13 @@ const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 function App() {
   const [token, setToken] = useState(null);
   const [bookList, setBookList] = useState([]);
+
+  useEffect(() => {
+    const localToken = localStorage.getItem("token");
+    if (localToken) {
+      setToken(localToken);
+    }
+  }, []);
 
   useEffect(() => {
     async function fetchBooks() {
@@ -40,7 +51,10 @@ function App() {
         <Route path="/" element={<Navigate to="/books" />} />
         <Route path="/books/:id" element={<SingleBook bookList={bookList} />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Navigate to="/login" />} />
+        <Route path="/register" element={<Register setToken={setToken} />} />
+        <Route element={<ProtectedRoute token={token} />}>
+          <Route path="/account" element={<Account />} />
+        </Route>
       </Routes>
     </>
   );
