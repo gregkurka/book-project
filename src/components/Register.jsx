@@ -1,12 +1,12 @@
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useState } from "react";
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 function Register({ setToken }) {
   const navigate = useNavigate();
-  const [firstName, setFirstName] = useState("");
+  const [firstname, setFirstname] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -17,7 +17,7 @@ function Register({ setToken }) {
     e.preventDefault();
     try {
       const data = await axios.post(`${BASE_URL}/users/register`, {
-        firstName,
+        firstname,
         lastName,
         email,
         password,
@@ -30,11 +30,11 @@ function Register({ setToken }) {
         localStorage.setItem("token", data.data.token);
         setToken(data.data.token);
         setSuccess(true);
-        setFirstName("");
+        setFirstname("");
         setLastName("");
         setEmail("");
         setPassword("");
-        navigate("/account");
+        navigate("/books");
       }
     } catch (err) {
       console.error(err.message);
@@ -54,8 +54,8 @@ function Register({ setToken }) {
           <p>First Name:</p>
           <input
             type="text"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
+            value={firstname}
+            onChange={(e) => setFirstname(e.target.value)}
           />
         </label>
         <label>
@@ -84,6 +84,9 @@ function Register({ setToken }) {
         </label>
         <button className="submit-button">Submit</button>
       </form>
+      <p>
+        Already have an account? Login <Link to="/login">here</Link>.
+      </p>
     </div>
   );
 }

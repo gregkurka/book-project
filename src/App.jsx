@@ -17,6 +17,26 @@ const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 function App() {
   const [token, setToken] = useState(null);
   const [bookList, setBookList] = useState([]);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    if (!token) return; // Only run if a token exists
+
+    axios
+      .get(BASE_URL + "/users/me", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        console.log("User Data:", response.data);
+        setUser(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching user data:", error);
+      });
+  }, [token]);
 
   useEffect(() => {
     const localToken = localStorage.getItem("token");
@@ -45,15 +65,15 @@ function App() {
 
   return (
     <>
-      <Navigations />
+      <Navigations user={user} />
       <Routes>
         <Route path="/books" element={<Books bookList={bookList} />} />
         <Route path="/" element={<Navigate to="/books" />} />
         <Route path="/books/:id" element={<SingleBook bookList={bookList} />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login setToken={setToken} />} />
         <Route path="/register" element={<Register setToken={setToken} />} />
         <Route element={<ProtectedRoute token={token} />}>
-          <Route path="/account" element={<Account />} />
+          <Route path="/account" element={<Account user={user} />} />
         </Route>
       </Routes>
     </>
