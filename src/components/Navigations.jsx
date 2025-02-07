@@ -10,7 +10,10 @@ function Navigations({ user }) {
       <div className="nav-links">
         <Link to="/books">Book Catalogue</Link>
         {user ? (
-          <Link to="/account">Welcome, {user.firstname}! </Link>
+          <>
+            <Link to="/account">Your checked out books </Link>
+            Welcome, {user.firstname}!
+          </>
         ) : (
           <>
             <Link to="/login">Login</Link>

@@ -18,6 +18,23 @@ function App() {
   const [token, setToken] = useState(null);
   const [bookList, setBookList] = useState([]);
   const [user, setUser] = useState(null);
+  const [userReservations, setUserReservations] = useState([]);
+  const [resetReservations, setResetReservations] = useState(0);
+
+  useEffect(() => {
+    if (!token) return;
+    axios
+      .get(`${BASE_URL}/reservations`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        setUserReservations(response.data.reservation);
+      })
+      .catch(console.error);
+  }, [token, resetReservations]);
 
   useEffect(() => {
     if (!token) return; // Only run if a token exists
@@ -67,13 +84,47 @@ function App() {
     <>
       <Navigations user={user} />
       <Routes>
-        <Route path="/books" element={<Books bookList={bookList} />} />
+        <Route
+          path="/books"
+          element={
+            <Books
+              bookList={bookList}
+              token={token}
+              userReservations={userReservations}
+              resetReservations={resetReservations}
+              setResetReservations={setResetReservations}
+            />
+          }
+        />
         <Route path="/" element={<Navigate to="/books" />} />
-        <Route path="/books/:id" element={<SingleBook bookList={bookList} />} />
+        <Route
+          path="/books/:id"
+          element={
+            <SingleBook
+              bookList={bookList}
+              token={token}
+              userReservations={userReservations}
+              resetReservations={resetReservations}
+              setResetReservations={setResetReservations}
+            />
+          }
+        />
         <Route path="/login" element={<Login setToken={setToken} />} />
         <Route path="/register" element={<Register setToken={setToken} />} />
         <Route element={<ProtectedRoute token={token} />}>
-          <Route path="/account" element={<Account user={user} />} />
+          <Route
+            path="/account"
+            element={
+              <Account
+                user={user}
+                bookList={bookList}
+                token={token}
+                userReservations={userReservations}
+                resetReservations={resetReservations}
+                setResetReservations={setResetReservations}
+              />
+            }
+          />
         </Route>
       </Routes>
     </>
