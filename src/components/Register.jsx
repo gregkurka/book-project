@@ -7,7 +7,7 @@ const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 function Register({ setToken }) {
   const navigate = useNavigate();
   const [firstname, setFirstname] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
@@ -18,7 +18,7 @@ function Register({ setToken }) {
     try {
       const data = await axios.post(`${BASE_URL}/users/register`, {
         firstname,
-        lastName,
+        lastname,
         email,
         password,
       });
@@ -31,7 +31,7 @@ function Register({ setToken }) {
         setToken(data.data.token);
         setSuccess(true);
         setFirstname("");
-        setLastName("");
+        setLastname("");
         setEmail("");
         setPassword("");
         navigate("/books");
@@ -62,8 +62,8 @@ function Register({ setToken }) {
           <p>Last Name:</p>
           <input
             type="text"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
+            value={lastname}
+            onChange={(e) => setLastname(e.target.value)}
           />
         </label>
         <label>

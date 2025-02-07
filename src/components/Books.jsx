@@ -2,13 +2,28 @@
 import React from "react";
 import BookCard from "./BookCard";
 
-function Books({ bookList }) {
+function Books({
+  bookList,
+  token,
+  userReservations,
+  resetReservations,
+  setResetReservations,
+}) {
   return (
     <>
       <h2 className="big-title">Library Book List</h2>
       <div className="book-list">
         {bookList.map((book) => {
-          return <BookCard key={book.id} book={book} />;
+          return (
+            <BookCard
+              key={book.id}
+              book={book}
+              token={token}
+              userReservations={userReservations}
+              resetReservations={resetReservations}
+              setResetReservations={setResetReservations}
+            />
+          );
         })}
       </div>
     </>

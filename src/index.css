@@ -79,3 +79,18 @@ body {
   margin-top: 10px;
   transform: translateX(60px);
 }
+
+.is-available {
+  margin: 5px;
+}
+
+.single-description {
+  display: flex;
+  flex-direction: column;
+  border: solid 2px black;
+  width: 600px;
+  align-items: center;
+  text-align: left;
+  padding: 20px;
+  margin-top: 20px;
+}
