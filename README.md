@@ -1,7 +1,7 @@
 # Block 30 - Book Buddy
 
 # Greg Kurka's Submission for Full Stack Academy Block 30, deployed here:
-https://stellar-licorice-bc65dd.netlify.app/books
+stellar-licorice-bc65dd.netlify.app
 
 ## Introduction
 
