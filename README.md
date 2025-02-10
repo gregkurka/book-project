@@ -1,7 +1,7 @@
 # Block 30 - Book Buddy
 
 # Greg Kurka's Submission for Full Stack Academy Block 30, deployed here:
-https://animated-ganache-e54a0a.netlify.app/
+https://splendid-croissant-264f3f.netlify.app
 
 ## Introduction
 
